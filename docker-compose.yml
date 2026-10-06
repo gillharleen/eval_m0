@@ -1,0 +1,25 @@
+# docker-compose.yml
+services:
+  db:
+    image: postgres:18  # Use your preferred Postgres version
+    environment:
+      POSTGRES_USER: harleen
+      POSTGRES_PASSWORD: password@123
+      POSTGRES_DB: expense_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: harleen@gill.com
+      PGADMIN_DEFAULT_PASSWORD: harleen@123
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+
+      
