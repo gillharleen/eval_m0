@@ -1,0 +1,1 @@
+from .database import insert_data_to_db
