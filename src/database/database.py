@@ -17,6 +17,14 @@ def get_connection():
         port=os.environ["POSTGRES_PORT"],
     )
 
+def clear_expenses():
+    logger.info('Empty the expenses table before a fresh load, so rows are not duplicated.')
+    connection = get_connection()
+    with connection:
+        with connection.cursor() as cursor:
+            cursor.execute("TRUNCATE TABLE expenses RESTART IDENTITY;")
+    connection.close()
+    logger.info("Expenses table cleared before loading")
 
 def insert_data_to_db(records):
     rows = [
@@ -41,10 +49,12 @@ def insert_data_to_db(records):
 
 def __run_query(sql, params=None):
     connection = get_connection()
-    with connection.cursor() as cursor:
-        cursor.execute(sql, params)
-        return cursor.fetchall()
-    connection.close()
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(sql, params)
+            return cursor.fetchall()
+    finally:
+        connection.close()
 
 
 def total_and_average():

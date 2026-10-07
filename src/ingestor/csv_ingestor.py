@@ -11,6 +11,8 @@ logger = logging.getLogger(__name__)
 
 def ingest_csv(folder_path):
 
+    database.clear_expenses()
+
     for file in Path(folder_path).glob("*.csv"):
         logger.info("Reading file: %s", file.name)
 

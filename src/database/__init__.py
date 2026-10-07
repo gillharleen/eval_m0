@@ -6,4 +6,5 @@ from .database import (
     spending_by_category,
     spending_in_range,
     total_and_average,
+    clear_expenses,
 )
