@@ -9,7 +9,6 @@ logger = logging.getLogger(__name__)
 BATCH_SIZE = 100
 
 def get_connection():
-    logger.info("Getting Database connection")
     return psycopg2.connect(
         user=os.environ["POSTGRES_USER"],
         password=os.environ["POSTGRES_PASSWORD"],
@@ -38,3 +37,54 @@ def insert_data_to_db(records):
             )
     connection.close()
     logger.info('Database connection closed')
+
+
+def __run_query(sql, params=None):
+    connection = get_connection()
+    with connection.cursor() as cursor:
+        cursor.execute(sql, params)
+        return cursor.fetchall()
+    connection.close()
+
+
+def total_and_average():
+    return __run_query("""
+        SELECT SUM(expense_amount), ROUND(AVG(expense_amount), 2)
+        FROM expenses;
+    """)
+
+
+def spending_by_category():
+    return __run_query("""
+        SELECT category, SUM(expense_amount) AS total
+        FROM expenses
+        GROUP BY category
+        ORDER BY total DESC;
+    """)
+
+
+def monthly_trends():
+    return __run_query("""
+        SELECT DATE_TRUNC('month', date)::date AS month, SUM(expense_amount) AS total
+        FROM expenses
+        GROUP BY month
+        ORDER BY month;
+    """)
+
+
+def daily_averages():
+    return __run_query("""
+        SELECT date, ROUND(AVG(expense_amount), 2) AS average
+        FROM expenses
+        GROUP BY date
+        ORDER BY date;
+    """)
+
+
+def spending_in_range(start_date, end_date):
+    return __run_query("""
+        SELECT SUM(expense_amount)
+        FROM expenses
+        WHERE date BETWEEN %s AND %s;
+    """, (start_date, end_date))
+

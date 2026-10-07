@@ -11,11 +11,6 @@ dependencies = [
     "psycopg2-binary>=2.9.13",
     "pydantic>=2.13.5",
     "python-dotenv>=1.2.4",
+    "tabulate>=0.10.0",
 ]
 
-[project.scripts]
-eval-m0 = "eval_m0:main"
-
-[build-system]
-requires = ["uv_build>=0.12.23,<0.13.0"]
-build-backend = "uv_build"

@@ -4,6 +4,7 @@ import os
 import logging
 from dotenv import load_dotenv
 from pathlib import Path
+import analytics
 
 load_dotenv()
 
@@ -22,8 +23,13 @@ logger = logging.getLogger()
 logger.setLevel(log_level_str)
 logger = logging.getLogger(__name__)
 
+
 if __name__ == "__main__":
 
     logger.info("CSV processing started")
     ingestor.ingest_csv("src/input_files")
     logger.info("CSV processing finished")
+    
+    logger.info("Running Analytics queries...")
+    analytics.show_analytics()
+    logger.info("Analytics data retrieved")
