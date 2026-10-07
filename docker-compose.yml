@@ -21,9 +21,6 @@ services:
     env_file: .env
     environment:
       POSTGRES_HOST: db
-    volumes:
-      - ./src/input_files:/app/src/input_files
-      - ./logs:/app/logs
     depends_on:
       db:
         condition: service_healthy
