@@ -1,0 +1,5 @@
+expense_name,expense_amount,category,date,payment_method,description
+Lunch,250.50,Food,2026-10-01,UPI,Swiggy order
+Cab,499,Travel,05/10/2026,Card,
+Notebook,-20,Stationery,2026-10-06,Cash,
+Coffee,120,,2026-10-07,UPI,Blue Tokai
