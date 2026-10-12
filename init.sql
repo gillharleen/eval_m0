@@ -6,7 +6,6 @@ CREATE TABLE IF NOT EXISTS expenses (
     category VARCHAR(50) NOT NULL,
     date DATE NOT NULL,
     payment_method VARCHAR(15) NOT NULL,
-    CONSTRAINT chk_payment_method CHECK (payment_method IN ('Cash', 'UPI', 'Card')),
     description VARCHAR(255)
 );
 

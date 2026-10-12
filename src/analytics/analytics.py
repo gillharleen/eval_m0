@@ -5,8 +5,11 @@ import logging
 logger = logging.getLogger(__name__)
 
 def print_table(title, rows, headers):
-    print(f"\n{title}")
-    print(tabulate(rows, headers=headers, tablefmt="rounded_outline", floatfmt=",.2f"))
+    table_str = tabulate(rows, headers=headers, tablefmt="rounded_outline", floatfmt=",.2f")
+    analytics_output = f"\n{title}\n{table_str}"
+    
+    print(f"\n{analytics_output}")
+    logger.info(f"{analytics_output}")
 
 def show_analytics():
     logger.info("Running total and average...")

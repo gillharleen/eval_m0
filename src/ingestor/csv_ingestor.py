@@ -2,7 +2,6 @@ import csv
 from pathlib import Path
 import logging
 from pydantic import ValidationError
-from psycopg2.extras import execute_batch
 
 import database
 import model
