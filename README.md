@@ -22,7 +22,7 @@ docker compose up --build
 
 ```mermaid
 flowchart LR
-    A[CSV Files in Folder] --> B[Python CLI App]
+    A[CSV Files in Folder] --> B[Python CLI]
     B --> C[Read CSV file and apply Pydantic Data Validation]
     C -->|Valid Records| D[(PostgreSQL Database)]
     C -->|Invalid Records| E[Log File / Error Output]
@@ -209,18 +209,12 @@ docker compose down        # stop containers
 ### Option B — Run the Python app locally (but database in Docker)
 
 ```bash
-# Start only PostgreSQL Container
-docker compose up -d db
+# Start only PostgreSQL and PgAdmin Containers
+docker compose up -d db pgadmin
 
 # Install dependencies and run the pipeline
 uv sync
 uv run src/main.py
-```
-
-Validation errors and progress are written to `logs/m0_expense_ingest.log`:
-
-```bash
-cat logs/m0_expense_ingest.log
 ```
 
 ### Run the tests
@@ -238,6 +232,8 @@ tests/test_expense_model.py::test_wrong_payment_method_is_rejected PASSED [100%]
 
 ============================== 5 passed in 0.11s ===============================
 ```
+
+[test_expense_model.py](tests/test_expense_model.py)
 
 ### Clean-slate verification
 
@@ -326,6 +322,5 @@ October 2026
 | A row fails validation | Skip the row, log every failing field, continue | One typo shouldn't block the rest of the file |
 | A row has several bad fields | Log all of them | The user can fix everything in one go |
 | A file has no valid rows | Skip the insert for that file | Avoids an empty database call |
-| Insert fails partway through a file | The whole file's insert is rolled back (`with connection:` transaction) | No half-loaded files |
 | Bad data reaches the database anyway | `CHECK` constraints reject it | Defence in depth |
 | Database not ready yet in Docker | `depends_on: condition: service_healthy` | The app only starts once `pg_isready` succeeds |
