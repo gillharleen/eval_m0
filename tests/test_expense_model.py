@@ -7,12 +7,13 @@ def test_valid_row():
     record = ExpenseRecord(
         expense_name="Lunch",
         expense_amount="250.50",
-        category="Food",
+        category=" Food ",
         date="2026-10-01",
         payment_method="UPI",
     )
     assert record.expense_amount == 250.5
     assert record.date == date(2026, 10, 1)
+    assert record.category == "Food"
 
 
 def test_day_first_date():

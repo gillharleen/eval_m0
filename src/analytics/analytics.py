@@ -1,13 +1,20 @@
+# Analytics file: runs report queries and prints them as tables.
 from tabulate import tabulate
 import database
 import logging
 
+# logger for this file, writes to the same log file set in main
 logger = logging.getLogger(__name__)
 
+# print title and rows as a table, numbers like 12,345.50
 def print_table(title, rows, headers):
-    print(f"\n{title}")
-    print(tabulate(rows, headers=headers, tablefmt="rounded_outline", floatfmt=",.2f"))
+    table_str = tabulate(rows, headers=headers, tablefmt="rounded_outline", floatfmt=",.2f")
+    analytics_output = f"\n{title}\n{table_str}"
+    
+    print(f"\n{analytics_output}")
+    logger.info(f"{analytics_output}")
 
+# print reports one by one 
 def show_analytics():
     logger.info("Running total and average...")
     total, average = database.total_and_average()[0]
