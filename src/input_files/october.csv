@@ -1,0 +1,11 @@
+expense_name,expense_amount,category,date,payment_method,description
+Lunch,250.50,Food,2026-10-01,UPI,Swiggy order
+Cab to office,499,Travel,05/10/2026,Card,
+Notebook,-20,Stationery,2026-10-06,Cash,
+Coffee,120,,2026-10-07,UPI,Blue Tokai
+Gym membership,1500,Health,2026/10/08,Card,Monthly fee
+Book,450,Education,2026-10-10,Cheque,
+,300,Food,2026-10-12,Cash,Snacks
+Internet bill,abc,Utilities,2026-10-15,UPI,
+Petrol,2000,  Travel  ,2026-10-18,Card,Full tank
+Groceries,980.25,Food,25/10/2026,UPI,Weekly vegetables

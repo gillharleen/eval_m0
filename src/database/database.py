@@ -59,6 +59,8 @@ def insert_data_to_db(records):
     connection.close()
     logger.info('Database connection closed')
 
+# ---------- Report queries ----------
+
 # runs a select query and returns rows, always closes connection
 def __run_query(sql, params=None):
     connection = get_connection()
@@ -69,7 +71,6 @@ def __run_query(sql, params=None):
     finally:
         connection.close()
 
-# ---------- Report queries ----------
 
 # Total spend and average spend
 def total_and_average():

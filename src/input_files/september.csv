@@ -1,0 +1,7 @@
+expense_name,expense_amount,category,date,payment_method,description
+Groceries,1850.00,Food,2026-09-03,UPI,BigBasket weekly order
+Metro card recharge,500,Travel,2026-09-05,UPI,
+Electricity bill,2340.75,Utilities,2026-09-10,Card,September bill
+Dinner with friends,1200,Food,15/09/2026,Cash,"Pizza, drinks and dessert"
+Movie tickets,700,Entertainment,2026-09-20,Card,PVR
+Phone recharge,299,Utilities,2026-09-28,UPI,Jio monthly plan

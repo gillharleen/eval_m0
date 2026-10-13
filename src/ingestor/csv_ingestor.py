@@ -40,7 +40,7 @@ def ingest_csv(folder_path):
                         message = e["msg"] 
                         value = e["input"]
 
-                        logger.error(
+                        logger.warning(
                             f"File: {file.name} | Row: {row_number} | Field: {field} | "
                             f"Error: {message} | Value: {value!r}"
                         )

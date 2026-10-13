@@ -17,8 +17,7 @@ def print_table(title, rows, headers):
 # print reports one by one 
 def show_analytics():
     logger.info("Running total and average...")
-    total, average = database.total_and_average()[0]
-    print_table("Summary", [["Total spend", total], ["Average transaction", average]], ["Metric", "Amount"])
+    print_table("Summary", database.total_and_average(), ["Total", "Average"])
 
     logger.info("Running Spending by category...")
     print_table("Spending by category", database.spending_by_category(), ["Category", "Total"])
@@ -30,5 +29,5 @@ def show_analytics():
     print_table("Daily averages", database.daily_averages(), ["Date", "Average"])
 
     logger.info("Running Month's total spend...")
-    month = database.spending_in_range("2026-10-01", "2026-10-31")[0][0]
-    print_table("October 2026", [["Total spend", month]], ["Metric", "Amount"])
+    october_spend = database.spending_in_range("2026-10-01", "2026-10-31")
+    print_table("Total Spend of October 2026", october_spend, ["Amount"])
