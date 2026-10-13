@@ -1,4 +1,4 @@
-# Main file: set up logging, load csv data into postgres, then run reports.
+# Main file entry point: set up logging,validated & load csv data into postgres, then run reports.
 
 import logging
 import os

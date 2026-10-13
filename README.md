@@ -1,6 +1,6 @@
 # Expense CSV Ingestion & Analytics Pipeline
 
-A Python command-line app that reads expense CSV files from a folder ([src/input_files](src/input_files)), validates every row with **Pydantic**, loads the valid rows into **PostgreSQL**, logs the invalid rows with the exact reason they failed, and prints a summary of spending analytics in the terminal. The whole stack runs with a single command 
+\validates every row with **Pydantic**, loads the valid rows into **PostgreSQL**, logs the invalid rows with the exact reason they failed, and prints a summary of spending analytics in the terminal. The whole stack runs with a single command 
 ```bash
 docker compose up --build
 ```
